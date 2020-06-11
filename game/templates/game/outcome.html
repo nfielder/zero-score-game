@@ -1,0 +1,61 @@
+{% extends 'game/base.html' %}
+
+{% block content %}
+<style>
+    #scoreBarOuter {
+        height: 800px;
+        width: 50%;
+        background-color: #ddd;
+        margin: 50px auto;
+    }
+
+    #scoreBar {
+        width: 100%;
+        height: 100%;
+        background-color: #4CAF50;
+        text-align: center;
+        font-size: 4rem;
+        color: white;
+        line-height: 100px;
+    }
+</style>
+
+<div id="scoreBarOuter">
+    <div id="scoreBar">100</div>
+</div>
+
+<br>
+
+<script>
+    var i = 0;
+    window.onload = setTimeout(function update() {
+        {% if score != "WRONG" %}
+            i = 1;
+            var elem = document.getElementById("scoreBar");
+            var height = 100;
+            var id = setInterval(frame, 100);
+            function frame() {
+                if (height <= {{ score }}) {
+                    clearInterval(id);
+                    i = 0;
+                    if (height == 0) {
+                        var el = document.getElementById("scoreBar");
+                        el.innerHTML = "POINTLESS !!";
+                        el.style.height = "100%";
+                        el.style.lineHeight = "700px";
+                        el.style.backgroundColor = "gold";
+                    }
+                } else {
+                    height--;
+                    elem.style.height = height + "%";
+                    elem.innerHTML = height;
+                }
+            }
+        {% else %}
+            var elem = document.getElementById("scoreBar");
+            elem.innerHTML = "WRONG"
+            elem.style.backgroundColor = "red";
+        {% endif %}
+    }, 1000);
+</script>
+{% endblock %}

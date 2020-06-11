@@ -1,0 +1,16 @@
+{% extends 'game/base.html' %}
+
+{% block content %}
+
+<h2>The question is: {{ question.question_text }}</h2>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'game:outcome' question.id %}" method="post">
+    {% csrf_token %}
+    <label for="answer">Answer:</label>
+    <input type="text" id="answer" name="answer">
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}

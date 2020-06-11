@@ -1,0 +1,14 @@
+{% extends 'game/base.html' %}
+
+{% block content %}
+    {% if quiz_list %}
+        <h1>Available Quizzes</h1>
+        <ul>
+        {% for quiz in quiz_list %} 
+            <li><a href="{% url 'game:quiz' quiz.id %}">{{ quiz.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No quizzes exist.</p>
+    {% endif %}
+{% endblock %}
