@@ -3,12 +3,12 @@
 {% block content %}
 <h1>Available Questions</h1>
 {% if question_list %}
-    <ul>
-        {% for question in question_list %}
-            <li><a href="{% url 'game:question' question.id %}">{{ question.question_text }}</a></li>
-        {% endfor %}
-    </ul>
+<ul>
+    {% for question in question_list %}
+    <li><a href="{% url 'game:question' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+</ul>
 {% else %}
-    <p>Quiz has no questions.</p>
+<p>Quiz has no questions.</p>
 {% endif %}
 {% endblock %}
